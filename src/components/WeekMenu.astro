@@ -1,0 +1,30 @@
+---
+const weeks = [1, 2]
+---
+
+<nav aria-label="Selección de semana">
+    {weeks.map((week) => <a href={`/semana/${week}`}>Semana {week}</a>)}
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        background-color: #ffffff;
+
+    a {
+        width: min(50vw, 800px);
+        padding: 0.35em 0.75em;
+        color: #2b3043;
+            font-size: clamp(2.75rem, 8vw, 7rem);
+            font-weight: bold;
+            line-height: 1.1;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+    }
+</style>

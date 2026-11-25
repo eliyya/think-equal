@@ -1,0 +1,47 @@
+---
+interface Props {
+    week?: number | string
+    variant?: 'home' | 'activity'
+}
+
+const { week = 1, variant = 'home' } = Astro.props
+const activities = [1, 2, 3, 4, 5]
+---
+
+<nav class={variant} aria-label="Navegación principal">
+    <a href="/">Inicio</a>
+    {activities.map((activity) => (
+        <a href={`/semana/${week}/actividad/${activity}`}>{activity}</a>
+    ))}
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0;
+        padding: 1rem;
+
+        a {
+            color: #2b3043;
+            font-size: 1.6rem;
+            text-decoration: none;
+            padding: 0.35em 1.2rem;
+            font-weight: bold;
+        }
+
+        &.home {
+            background-color: #83cfdc;
+        }
+
+        &.activity {
+            background-color: #347bcb;
+
+            a {
+                color: #ffffff;
+            }
+        }
+    }
+</style>

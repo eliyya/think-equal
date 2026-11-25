@@ -1,0 +1,27 @@
+---
+import Nav from '../../../../../components/Nav.astro'
+import BaseLayout from '../../../../../layouts/BaseLayout.astro'
+
+export function getStaticPaths() {
+    const weeks = [1, 2]
+    const activities = [1, 2, 3, 4, 5]
+
+    return weeks.flatMap((week) =>
+        activities.map((activity) => ({
+            params: {
+                week: String(week),
+                activity: String(activity),
+            },
+        })),
+    )
+}
+
+const week = Astro.params.week ?? '1'
+const activity = Astro.params.activity ?? '1'
+const title = `Arcoíris en las ventanas | Actividad ${activity} | Semana ${week}`
+---
+
+<BaseLayout title={title}>
+    <Nav week={week} variant="activity" />
+    <img src={`/img/s${week}/actividad-${activity}.jpg`} alt="Actividad de aprendizaje" />
+</BaseLayout>

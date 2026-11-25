@@ -1,0 +1,22 @@
+---
+import Nav from '../../../components/Nav.astro'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+
+export function getStaticPaths() {
+    return [1, 2].map((week) => ({
+        params: { week: String(week) },
+    }))
+}
+
+const week = Astro.params.week ?? '1'
+const title = `Arcoíris en las ventanas | Semana ${week}`
+---
+
+<BaseLayout
+    title={title}
+    image={`/img/s${week}/portada.jpg`}
+    imageAlt={`Portada de la semana ${week}`}
+>
+    <Nav week={week} />
+    <img src={`/img/s${week}/intro.jpg`} alt="Actividad de aprendizaje" />
+</BaseLayout>

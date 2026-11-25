@@ -1,0 +1,58 @@
+---
+import { Font } from 'astro:assets'
+
+interface Props {
+    title?: string
+    description?: string
+    image?: string
+    imageAlt?: string
+}
+
+const {
+    title = 'Arcoíris en las ventanas',
+    description = 'Actividades divertidas y simples para disfrutar en casa que fortalecen el aprendizaje social y emocional de su niño/a para unos resultados de vida positivos.',
+    image,
+    imageAlt = title,
+} = Astro.props
+
+const socialImage = image && (Astro.site ? new URL(image, Astro.site).href : image)
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        {socialImage && <meta property="og:image" content={socialImage} />}
+        {socialImage && <meta property="og:image:alt" content={imageAlt} />}
+        {socialImage && <meta name="twitter:card" content="summary_large_image" />}
+        {socialImage && <meta name="twitter:image" content={socialImage} />}
+        <Font cssVariable="--font-poppins" />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-family: var(--font-poppins);
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
